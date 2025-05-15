@@ -1,5 +1,4 @@
-# mobile-robot
-Initial repository for Mobile Robot lecture.
+# Li-Ma (Library Manager)
 
 ![Screenshot from 2025-05-15 18-09-40](https://github.com/user-attachments/assets/72e46afd-3a78-4c47-9785-282c1d2734d7)
 ![Screenshot from 2025-05-15 18-10-53](https://github.com/user-attachments/assets/15518719-5260-4fb4-8d59-cb0eb5124a89)
