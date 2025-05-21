@@ -9,5 +9,9 @@
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0"
+  },
+  "scripts":{
+    "build": "npm ci --prefix functions && npm run build --prefix functions",
+    "test": "echo \"No tests yet\" && exit 0"
   }
 }
