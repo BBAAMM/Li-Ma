@@ -33,3 +33,7 @@ google-services.json
 *.hprof
 node_modules/
 .env*
+
+# Cache data
+functions/tags
+emu_data/

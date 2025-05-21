@@ -2,8 +2,25 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /books/{bookId} {
+    	allow read: if true;
+      allow create, update, write: if
+      	request.auth != null &&
+      	request.resource.data.keys()
+        	.hasOnly(['author', 'title', 'description', 'lendable']) ||
+        request.resource.data.keys()
+        	.hasOnly(['author', 'title', 'description', 'avg_review', 'reviews', 'lendable']) &&
+      	request.resource.data.author is string &&
+      	request.resource.data.title is string &&
+      	request.resource.data.description is string &&
+        request.resource.data.avg_review is number &&
+        request.resource.data.reviews is list &&
+        request.resource.data.lendable is bool &&
+        
+        request.resource.data.author.size() > 0 &&
+        request.resource.data.author.size() <= 100 &&
+        request.resource.data.avg_review >=0 &&
+        request.resource.data.avg_review <=5;
     }
   }
 }

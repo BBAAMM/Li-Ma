@@ -1,19 +1,11 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import * as functions from "firebase-functions/v2";
+import express from "express";
+import bookRoutes from "./routes/bookRoutes.js";
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+functions.setGlobalOptions({region: "asia-northeast3"});
+const app=express();
+app.use(express.json());
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+app.use("/", bookRoutes);
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export const api = functions.https.onRequest(app);
