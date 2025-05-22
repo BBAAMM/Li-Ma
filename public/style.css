@@ -1,27 +1,59 @@
-body {
+/* body {
   background-color: lightblue;
   height: 100vh;
   margin: 0;
 
   display: flex;
-  flex-direction: column;  /* ← 자식 요소들을 세로로 배치 */
-  align-items: center;      /* 가로 가운데 정렬 */
-  justify-content: start;   /* 세로 정렬: 위에서부터 */
-         /* 이미지와 상단 간격 */
+  flex-direction: column;  
+  align-items: center;      
+  justify-content: start;   
+
+} */
+body {
+    
+  background-image: url('images/background2.png');  /* 배경 이미지 경로 */
+  background-size: cover;              /* 비율 유지하면서 꽉 채움 */
+  background-repeat: no-repeat;        /* 반복 제거 */
+  background-position: center center;  /* 가운데 정렬 */
+  height: 100vh;                       /* 전체 높이 */
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+
+  
 }
+/* body {
+  background-image: url('images/background2.png');
+  background-size: cover;         
+  background-repeat: no-repeat;  
+  background-position: center center; 
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+} */
+
 
 .secretary {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px; /* 대화창과의 간격 */
+  margin-bottom: 10px; 
 }
 
 img {
   width: auto;
   height: 15vh;
   max-width: 100%;
-  object-fit: contain;  /* 비율 유지하며 이미지 짤림 방지 */
+  object-fit: contain;  
 }
 .communication_box{
     flex-direction: column; 

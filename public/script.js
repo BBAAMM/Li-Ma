@@ -48,12 +48,15 @@ function addMessage(message, type) {
     chatArea.scrollTop = chatArea.scrollHeight;
   }, 50);
 }
-}
+} 
 function sendToAPI(userMessage) {
   fetch("https://asia-northeast3-li-ma-56446.cloudfunctions.net/api/books", { //  API 주소
     method: 'GET',
+// { 내가 보내는형태.
+//   "message": "책 대여 가능해?"
+// }
     // headers: {
-    //   'Content-Type': 'application/json'
+    //   'Content-Type': 'application/json' //내가 보내는형태 json
     // },
     // body: JSON.stringify({ message: userMessage })
   })
@@ -66,7 +69,11 @@ function sendToAPI(userMessage) {
   });
 }
 function handleAPIResponse(data) {
-  const botReply = data.reply || '챗봇 응답을 받아오지 못했습니다.';
+// { 서버 응답 예시.
+//   "text": "안녕하세요! 무엇을 도와드릴까요?",
+//   "status": "success"
+// }
+  const botReply = data.text || '챗봇 응답을 받아오지 못했습니다.';
   addMessage(botReply, 'ch1');
   chatArea.scrollTop = chatArea.scrollHeight;
 }
