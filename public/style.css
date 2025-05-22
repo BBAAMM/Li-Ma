@@ -1,0 +1,169 @@
+body {
+  background-color: lightblue;
+  height: 100vh;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;  /* ← 자식 요소들을 세로로 배치 */
+  align-items: center;      /* 가로 가운데 정렬 */
+  justify-content: start;   /* 세로 정렬: 위에서부터 */
+         /* 이미지와 상단 간격 */
+}
+
+.secretary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* 대화창과의 간격 */
+}
+
+img {
+  width: auto;
+  height: 15vh;
+  max-width: 100%;
+  object-fit: contain;  /* 비율 유지하며 이미지 짤림 방지 */
+}
+.communication_box{
+    flex-direction: column; 
+    width: 60%;
+    max-width: 600px;
+    height: 80vh; /* 화면 높이의 70% 차지 */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 30px;
+
+}
+
+
+/* 대화 내용 출력 영역 */
+.chat_area {
+    justify-content: center; 
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 사용자 입력 영역 */
+.input_area {
+    justify-content: center; 
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.input_area input {
+    justify-content: center; 
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.input_area button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+.wrap {
+    padding: 0;
+}
+
+.wrap .chat {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+/* 사용자 아이콘 스타일 */
+.wrap .chat .user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    /* box-sizing: content-box; */
+    flex-shrink: 0;
+    box-sizing: border-box; /* ← border 포함 계산 */
+    padding: 10;
+
+}
+
+.wrap .chat .user-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    
+}
+
+/* 챗봇 아이콘 스타일 */
+.wrap .chat .bot-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+    flex-shrink: 0;
+           /* ← 혹시 padding이 있으면 제거 */
+    
+}
+
+.wrap .chat .bot-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.wrap .chat .textbox {
+    position: relative;
+    display: inline-block;
+    max-width: 80%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 12px;
+    line-height: 1.6;
+    word-break: break-word;
+    white-space: pre-wrap; /* 줄바꿈 처리 */
+}
+
+
+.wrap .chat .textbox::before {
+    position: absolute;
+    display: block;
+    top: 0;
+    font-size: 1.2rem;
+}
+
+.wrap .ch1 .textbox {
+    margin-left: 15px;
+    background-color: #ddd;
+}
+
+.wrap .ch1 .textbox::before {
+    left: -12px;
+    content: "◀";
+    color: #ddd;
+}
+
+.wrap .ch2 {
+    flex-direction: row-reverse;
+}
+
+.wrap .ch2 .textbox {
+    margin-right: 15px;
+    background-color: #F9EB54;
+}
+
+.wrap .ch2 .textbox::before {
+    right: -12px;
+    content: "▶";
+    color: #F9EB54;
+}
