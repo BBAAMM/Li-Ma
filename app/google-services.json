@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "310904160810",
+    "firebase_url": "https://temi-librarian-default-rtdb.firebaseio.com",
+    "project_id": "temi-librarian",
+    "storage_bucket": "temi-librarian.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310904160810:android:0b32af469de5a2cd1bf953",
+        "android_client_info": {
+          "package_name": "com.example.temifirebasebot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdkBND5dUaDIBlilKxup27uedQD8LDqmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
