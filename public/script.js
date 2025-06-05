@@ -77,3 +77,20 @@ function handleAPIResponse(data) {
   addMessage(botReply, 'ch1');
   chatArea.scrollTop = chatArea.scrollHeight;
 }
+
+
+
+
+function refreshEnvData() {
+  // 서버 온습도 API 호출
+  fetch('/api/env') // ← 실제 API 주소로 변경 필요
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('env-value').innerText = `${data.temperature}℃ / ${data.humidity}%`;
+    })
+    .catch(err => {
+      console.error('환경 정보 갱신 실패:', err);
+      // 실패 시 기본값 사용
+      document.getElementById('env-value').innerText = `36.5℃ / 55%`;
+    });
+}

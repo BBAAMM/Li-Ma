@@ -7,36 +7,44 @@
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- <img class="bg-img" src="images/background2.png" alt="background"> -->
+  <header class="header">
     <script src="script.js" defer></script>
+
     <div class="secretary">
         <img src="images/secretary.png" alt="Temi 아이콘">
     </div>
     
-<div class="communication_box">
-  <!-- 대화 표시 영역 -->
-  <div class="chat_area">
-    <div class="wrap">  
-      <div class="chat ch1">
-        <div class="bot-icon">
-            <img src="images/secretary.png" alt="bot" />
+    <div class="communication_box">
+      <!-- 대화 표시 영역 -->
+      <div class="chat_area">
+        <div class="wrap">    
+          <div class="chat ch1">
+            <div class="bot-icon">
+                <img src="images/secretary.png" alt="bot" />
             </div>
-        <div class="textbox">안녕하세요! 도서관 챗봇입니다.
-책을 빌릴 수 있는지 확인하거나, 위치를 찾거나, 책에 대한 정보를 검색하실 수 있어요.
-어떤 걸 도와드릴까요?</div>
+            <div class="textbox">
+              안녕하세요! 도서관 챗봇입니다. <br>
+              책을 빌릴 수 있는지 확인하거나, 위치를 찾거나, 책에 대한 정보를 검색하실 수 있어요. <br>
+              어떤 걸 도와드릴까요?
+            </div>
+          </div>
+          <!-- 추가 대화들 -->
+        </div>
       </div>
-      <!-- 추가 대화들 -->
+
+      <!-- 입력창 -->
+      <div class="input_area">
+        <input type="text" placeholder="메시지를 입력하세요">
+        <button>전송</button>
+      </div>
     </div>
+    
+  <div class="top-right-widget">
+    <button class="refresh-btn" onclick="refreshEnvData()">🔄</button>
+    <img src="images/temperature.png" alt="온습도" class="env-icon">
+    <div class="env-text" id="env-value">--℃ / --%</div>
   </div>
-
-  <!-- 입력창 -->
-  <div class="input_area">
-    <input type="text" placeholder="메시지를 입력하세요">
-    <button>전송</button>
-  </div>
-
-</div>
-
-
+  </header>
 </body>
+
 </html>
