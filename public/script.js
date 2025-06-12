@@ -50,30 +50,23 @@ function addMessage(message, type) {
 }
 } 
 function sendToAPI(userMessage) {
-  fetch("https://asia-northeast3-li-ma-56446.cloudfunctions.net/api/books", { //  API 주소
-    method: 'GET',
-// { 내가 보내는형태.
-//   "message": "책 대여 가능해?"
-// }
-    // headers: {
-    //   'Content-Type': 'application/json' //내가 보내는형태 json
-    // },
-    // body: JSON.stringify({ message: userMessage })
+  fetch("http://localhost:5000/api/books", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message: userMessage })  // ← 사용자 메시지를 Python으로 전달
   })
   .then(res => res.json())
-  .then(data => handleAPIResponse(data)) // 응답 처리 함수 호출
+  .then(data => handleAPIResponse(data))  // 응답 처리
   .catch(error => {
     console.error('Error:', error);
-    addMessage(' 서버 응답 오류가 발생했습니다.', 'ch1');
-    chatArea.scrollTop = chatArea.scrollHeight;
+    addMessage('서버 응답 오류가 발생했습니다.', 'ch1');
   });
 }
+
 function handleAPIResponse(data) {
-// { 서버 응답 예시.
-//   "text": "안녕하세요! 무엇을 도와드릴까요?",
-//   "status": "success"
-// }
   const botReply = data.text || '챗봇 응답을 받아오지 못했습니다.';
-  addMessage(botReply, 'ch1');
+  addMessage(botReply, 'ch1');  // ← 응답 메시지를 UI에 표시
   chatArea.scrollTop = chatArea.scrollHeight;
 }
