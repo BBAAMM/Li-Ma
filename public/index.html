@@ -38,11 +38,22 @@
       </div>
     </div>
     
+
   <div class="top-right-widget">
-    <button class="refresh-btn" onclick="refreshEnvData()">🔄</button>
-    <img src="images/temperature.png" alt="온습도" class="env-icon">
-    <div class="env-text" id="env-value">--℃ / --%</div>
+  <button class="refresh-btn" onclick="refreshEnvData()">🔄</button>
+  <img src="images/temperature.png" alt="온습도" class="env-icon" onclick="toggleEnvDetail()">
+  <div class="env-text" id="env-value">--℃ / --%</div>
+
+  <div id="env-details" class="env-details">
+    <div class="zone1" id="env-value1">1구역: --℃ / --%</div>
+    <div class="zone2" id="env-value2">2구역: --℃ / --%</div>
+    <div class="zone3" id="env-value3">3구역: --℃ / --%</div>
+    <div class="zone4" id="env-value4">4구역: --℃ / --%</div>
   </div>
+</div>
+
+
+
   </header>
 </body>
 

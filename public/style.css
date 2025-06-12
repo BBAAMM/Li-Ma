@@ -235,3 +235,18 @@ img {
   font-size: 14px;
   text-align: center;
 }
+
+.env-details {
+  display: none; /* 초기엔 숨김 */
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  margin-top: 6px;
+  border-top: 1px solid #ccc;
+  padding-top: 6px;
+  transition: all 0.3s ease;
+}
+
+.env-details div {
+  margin: 2px 0;
+}
