@@ -19,11 +19,8 @@ if (input && button && chatArea && chatWrap) {
   input.value = '';
 
   chatArea.scrollTop = chatArea.scrollHeight;
-  sendToAPI(text); //api호출함수.
-  // setTimeout(() => {
-  //   addMessage('챗봇응답 예시입니다', 'ch1'); // 챗봇 메시지(왼쪽)
-  //   chatArea.scrollTop = chatArea.scrollHeight;
-  // }, 800);
+  sendToAPI(text); 
+
 }
 
 function addMessage(message, type) {
@@ -49,39 +46,21 @@ function addMessage(message, type) {
   }, 50);
 }
 } 
-// function sendToAPI(userMessage) {
-//   fetch("https://asia-northeast3-li-ma-56446.cloudfunctions.net/api/books", { //  API 주소
-//     method: 'GET',
-// // { 내가 보내는형태.
-// //   "message": "책 대여 가능해?"
-// // }
-//     // headers: {
-//     //   'Content-Type': 'application/json' //내가 보내는형태 json
-//     // },
-//     // body: JSON.stringify({ message: userMessage })
-//   })
-//   .then(res => res.json())
-//   .then(data => handleAPIResponse(data)) // 응답 처리 함수 호출
-//   .catch(error => {
-//     console.error('Error:', error);
-//     addMessage(' 서버 응답 오류가 발생했습니다.', 'ch1');
-//     chatArea.scrollTop = chatArea.scrollHeight;
-//   });
-// }
+
 
 function sendToAPI(userMessage) {
   fetch("https://asia-northeast3-li-ma-56446.cloudfunctions.net/api/books", {
     method: 'GET',
-    // headers와 body는 주석 처리된 상태 유지
+
   })
   .then(res => res.json())
   .then(data => {
-    console.log('✅ API 응답 성공:', data[0]); // ← 콘솔 출력 추가!
-    console.log('✅ API 응답 내용용:', data[0].author); // ← 콘솔 출력 추가!
+    console.log('= API 응답 성공:', data[0]); // ← 콘솔 출력 추가!
+    console.log(' API 응답 내용용:', data[0].author); // ← 콘솔 출력 추가!
     handleAPIResponse(data[0]);
   })
   .catch(error => {
-    console.error('❌ API 요청 실패:', error);
+    console.error(' API 요청 실패:', error);
     addMessage('서버 응답 오류가 발생했습니다.', 'ch1');
     chatArea.scrollTop = chatArea.scrollHeight;
   });
@@ -89,10 +68,6 @@ function sendToAPI(userMessage) {
 
 
 function handleAPIResponse(data) {
-// { 서버 응답 예시.
-//   "text": "안녕하세요! 무엇을 도와드릴까요?",
-//   "status": "success"
-// }
   const botReply = data.author || '챗봇 응답을 받아오지 못했습니다.';
   addMessage(botReply, 'ch1');
   chatArea.scrollTop = chatArea.scrollHeight;
@@ -101,16 +76,44 @@ function handleAPIResponse(data) {
 
 
 
+// function refreshEnvData() {
+//   fetch('https://li-ma-56446-default-rtdb.asia-southeast1.firebasedatabase.app/devices.json')
+//   .then(res => res.json())
+//   .then(data => {
+//     const temp = data.s2.temp;
+//     const hum = data.s2.hum;
+
+//     document.getElementById('env-value').innerText = `${temp}℃ / ${hum}%`;
+//   })
+//   .catch(err => {
+//     console.error('환경 정보 갱신 실패:', err);
+//     document.getElementById('env-value').innerText = `36.5℃ / 55%`;
+//   });
+
+
+// }
 function refreshEnvData() {
-  // 서버 온습도 API 호출
-  fetch('/api/env') // ← 실제 API 주소로 변경 필요
+  fetch('https://li-ma-56446-default-rtdb.asia-southeast1.firebasedatabase.app/devices.json')
     .then(res => res.json())
     .then(data => {
-      document.getElementById('env-value').innerText = `${data.temperature}℃ / ${data.humidity}%`;
+      // const temp1 = data.s1.temp;
+      // const hum1 = data.s1.hum;
+      const temp2 = data.s2.temp;
+      const hum2 = data.s2.hum;
+      const temp3 = data.s3.temp;
+      const hum3 = data.s3.hum;
+      const temp4 = data.s4.temp;
+      const hum4 = data.s4.hum;
+      const avg_temp = ((temp2 + temp3 + temp4) / 3).toFixed(1);
+      const avg_hum = ((hum2 + hum3 + hum4) / 3).toFixed(1);
+      document.getElementById('env-value').innerText = `${avg_temp}℃ / ${avg_hum}%`;
     })
     .catch(err => {
       console.error('환경 정보 갱신 실패:', err);
-      // 실패 시 기본값 사용
       document.getElementById('env-value').innerText = `36.5℃ / 55%`;
     });
 }
+
+// 5초마다 자동 갱신
+refreshEnvData();
+setInterval(refreshEnvData, 5000);
