@@ -19,8 +19,11 @@ if (input && button && chatArea && chatWrap) {
   input.value = '';
 
   chatArea.scrollTop = chatArea.scrollHeight;
-  sendToAPI(text); 
-
+  sendToAPI(text); //api호출함수.
+  // setTimeout(() => {
+  //   addMessage('챗봇응답 예시입니다', 'ch1'); // 챗봇 메시지(왼쪽)
+  //   chatArea.scrollTop = chatArea.scrollHeight;
+  // }, 800);
 }
 
 function addMessage(message, type) {
@@ -46,33 +49,27 @@ function addMessage(message, type) {
   }, 50);
 }
 } 
-
-
 function sendToAPI(userMessage) {
-  fetch("https://asia-northeast3-li-ma-56446.cloudfunctions.net/api/books", {
-    method: 'GET',
-
+  fetch("http://localhost:5000/api/books", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message: userMessage })  // ← 사용자 메시지를 Python으로 전달
   })
   .then(res => res.json())
-  .then(data => {
-    console.log('= API 응답 성공:', data[0]); // ← 콘솔 출력 추가!
-    console.log(' API 응답 내용용:', data[0].author); // ← 콘솔 출력 추가!
-    handleAPIResponse(data[0]);
-  })
+  .then(data => handleAPIResponse(data))  // 응답 처리
   .catch(error => {
-    console.error(' API 요청 실패:', error);
+    console.error('Error:', error);
     addMessage('서버 응답 오류가 발생했습니다.', 'ch1');
-    chatArea.scrollTop = chatArea.scrollHeight;
   });
 }
 
-
 function handleAPIResponse(data) {
-  const botReply = data.author || '챗봇 응답을 받아오지 못했습니다.';
-  addMessage(botReply, 'ch1');
+  const botReply = data.text || '챗봇 응답을 받아오지 못했습니다.';
+  addMessage(botReply, 'ch1');  // ← 응답 메시지를 UI에 표시
   chatArea.scrollTop = chatArea.scrollHeight;
 }
-
 
 
 
