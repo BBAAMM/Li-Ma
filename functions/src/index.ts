@@ -8,6 +8,7 @@ functions.setGlobalOptions({region: "asia-northeast3"});
 
 const app=express();
 app.use(corsMiddleware);
+app.options("*", corsMiddleware);
 app.use(express.json());
 
 app.use("/", bookRoutes);
